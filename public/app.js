@@ -1,15 +1,15 @@
-var app = angular.module('flapperNews', []);
-
-app.controller('MainCtrl', [
-	'$scope',
-	function($scope){
-	  $scope.posts = [
-	  	{title: "post 1", upvotes: 5},
-	  	{title: "post 2", upvotes: 14},
-	  	{title: "post 3", upvotes: 0},
-	  	{title: "post 4", upvotes: 4},
-	  	{title: "post 5", upvotes: 12}
-	  ];
+angular.module('flapperNews', [])
+.factory("posts", [function(){
+	var obj = {
+		posts: [{title: "post 1", link:"df", upvotes: 0}]
+	};
+	return obj;
+}])
+.controller('MainCtrl', [
+	"$scope",
+	"posts", 
+	function($scope, posts){
+	  $scope.posts = posts.posts; 
 
 	  $scope.addPost = function() {
 	  	if ($scope.title == "" || $scope.title == null) { return alert("Please enter the title")}
